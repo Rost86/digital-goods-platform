@@ -10,8 +10,8 @@ function renderPieChart(pieLabels, pieData) {
             labels: pieLabelsArray,
             datasets: [{
                 data: pieDataArray,
-                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                backgroundColor: ['#6870DD', '#1cc88a', '#36b9cc'],
+                hoverBackgroundColor: ['#6870DD', '#17a673', '#2c9faf'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
         },

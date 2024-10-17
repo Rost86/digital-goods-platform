@@ -3,7 +3,10 @@
 
 <head th:replace="~{fragments/head :: head('TradeAnalytics ')}"></head>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" rel="stylesheet">
-
+<style>
+    .jqvmap-zoomin{display:none;}
+    .jqvmap-zoomout{display:none;}
+</style>
 
 <body id="page-top">
 
@@ -28,8 +31,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         <div id="output" style="color:blue"></div>
-                        <button id="syncBtn" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Sync Data</button>
+                        <button id="syncBtn" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sync fa-sm text-white-50 mr-2"></i>Sync Data</button>
 
                     </div>
 
@@ -56,11 +58,11 @@
 
                         <!-- Earnings (Annual) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Earnings (Annual)
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="'$' + ${totalRevenue}">$215,000</div>
@@ -75,11 +77,11 @@
 
                         <!-- Products Sold (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Products Sold (Monthly)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${lastMonthOrders}">18</div>
                                         </div>
@@ -92,11 +94,11 @@
                         </div>
                         <!-- Products Sold (All Time) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Products Sold (All Time)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totalOrders}">18</div>
                                         </div>

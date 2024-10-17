@@ -29,7 +29,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/**").permitAll() // Allow all API requests without authentication
-                        .requestMatchers("/register", "/login", "/css/**", "/js/**", "/error").permitAll() // Public routes
+                        .requestMatchers("/register", "/login", "/css/**", "/js/**", "/error", "/img/**", "/vendor/**").permitAll() // Public routes
                         .anyRequest().authenticated() // All other routes require authentication
                 )
                 .formLogin((form) -> form
