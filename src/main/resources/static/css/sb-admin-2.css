@@ -2357,8 +2357,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #24116A;
+  border-color: #24116A;
 }
 
 .btn-primary:hover {
@@ -9592,7 +9592,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #4e73df !important;
+  color: #131328 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -9901,7 +9901,7 @@ a:focus {
 
 .bg-gradient-primary {
   background-color: #4e73df;
-  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  background-image: linear-gradient(80deg,#6870DD 10%,#9DA2F3 100%);
   background-size: cover;
 }
 
@@ -10041,7 +10041,7 @@ a:focus {
 }
 
 .border-left-primary {
-  border-left: 0.25rem solid #4e73df !important;
+  border-left: 0.25rem solid #43E8E1 !important;
 }
 
 .border-bottom-primary {
