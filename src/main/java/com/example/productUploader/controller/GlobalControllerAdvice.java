@@ -30,6 +30,20 @@ public class GlobalControllerAdvice {
         String email = authentication.getName();
         Optional<User> userOptional = userService.findByEmail(email);
 
-        return userOptional.map(User::getUsername).orElse("Anonymous User");
+        return userOptional.map(user -> user.getUsername() + " " + user.getLastName()).orElse("Anonymous User");
+    }
+
+    @ModelAttribute("userId")
+    public Long currentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return null;  // Return null if the user is not authenticated
+        }
+
+        String email = authentication.getName();
+        Optional<User> userOptional = userService.findByEmail(email);
+
+        return userOptional.map(User::getId).orElse(null);  // Return user ID or null
     }
 }

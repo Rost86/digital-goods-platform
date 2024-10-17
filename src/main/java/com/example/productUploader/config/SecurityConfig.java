@@ -25,21 +25,26 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/etsy/token") // Disable CSRF protection for this specific route
+                        .ignoringRequestMatchers("/api/**") // Disable CSRF protection for all /api/** routes
                 )
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/etsy/authorize", "/etsy/token", "/etsy/products", "/register", "/login", "/css/**", "/js/**", "/error").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/**").permitAll() // Allow all API requests without authentication
+                        .requestMatchers("/register", "/login", "/css/**", "/js/**", "/error").permitAll() // Public routes
+                        .anyRequest().authenticated() // All other routes require authentication
                 )
                 .formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll()
-                        .defaultSuccessUrl("/index", true)
-                        .usernameParameter("email")
+                        .loginPage("/login")  // Custom login page
+                        .permitAll()           // Allow access to the login page
+                        .usernameParameter("email") // Use email instead of username
+                        .defaultSuccessUrl("/index", true)  // Default URL to redirect after login if no saved request
                 )
-                .logout((logout) -> logout.permitAll())
-                // .csrf((csrf) -> csrf.disable())
-                .requestCache((cache) -> cache.disable());
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")  // Custom logout URL
+                        .logoutSuccessUrl("/login?logout")  // Redirect after successful logout
+                        .permitAll()
+                        .logoutRequestMatcher(new org.springframework.security.web.util.matcher.AntPathRequestMatcher("/logout", "GET"))  // Allow GET for logout
+                )
+                .requestCache((cache) -> cache.disable()); // Disable caching of authenticated requests
 
         return http.build();
     }

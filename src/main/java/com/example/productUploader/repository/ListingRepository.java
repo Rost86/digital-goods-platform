@@ -4,7 +4,9 @@ import com.example.productUploader.model.Listing;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, Long> {
-    // No need to add methods here; JpaRepository provides basic CRUD operations.
+    List<Listing> findTop10ByOrderByViewsDesc();
 }

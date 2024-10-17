@@ -1,65 +1,72 @@
-# Platform for Managing and Exporting Digital Goods
+# Business Management Platform
 
-## Project Description
-The goal of this project is to create a platform for managing digital goods such as prints and videos, with the capability to export them to various marketplaces like **Etsy** and **Redbubble**. The application should support uploading multiple images and videos for each product, storing and managing them, as well as integrating with external service APIs. All functionality is tied to individual users, allowing each user to have their own product database and settings.
+## Overview
 
-## Main Tasks
+This application is a comprehensive business management platform designed to help businesses manage digital and fulfillment products efficiently. The platform offers features like cost tracking, performance analytics, tax reporting, and product integration with third-party services such as Printify. It aims to streamline business operations, enhance economic insights, and simplify product and cost management for businesses of all sizes.
 
-### 1. User Management (Initial Phase)
+---
 
-**Registration and Authentication:**
-- Implement a registration system for new users with data validation.
-- Integrate an authentication mechanism for users using **Spring Security**.
+## Features
 
-**Profile Management:**
-- Implement the ability for users to edit their profile (e.g., change password, contact information).
+- **Product Management**: Manage digital and fulfillment products.
+- **ROI and Profit Margin Analysis**: Monitor and analyze Return on Investment (ROI) and Profit Margins.
+- **Cost Tracking**: Track fixed, variable, and itemized costs for accurate reporting.
+- **Sales & Discounts**: Apply bulk discounts and promotions to products.
+- **Printify Integration**: Automate product fulfillment and synchronization with Printify.
+- **Tax Reporting**: Generate monthly tax reports based on business expenses, revenues, and profits.
 
-**Session Management:**
-- Ensure secure session management with the ability to log out.
+---
 
-### 2. Creating a User-Specific Product Database
+## To-Do List
 
-**Linking Products to Users:**
-- Design the database structure so that each product is linked to a specific user.
+### 1. Integrate Printify API
+- **Description**: Integrate the Printify API to allow seamless synchronization of products and orders between the platform and Printify.
+- **Tasks**:
+  - Product import/export functionality.
+  - Order synchronization, including shipping and status updates.
+  - Automate fulfillment of products via Printify.
+- **Priority**: High
 
-**Product Tables:**
-- Develop tables to store product information, including:
-  - Name
-  - Description
-  - Category
-  - Tags
-  - Up to 10 images
-  - One video
+### 2. Add Column Sorting to Business Management Tables
+- **Description**: Add sorting functionality to all tables within the Business Management module.
+- **Tasks**:
+  - Allow sorting by columns (product name, price, etc.).
+  - Ensure sorting works across all business data (e.g., orders, customer data).
+- **Priority**: High
 
-### 3. Uploading and Managing Images and Videos (After Users)
+### 3. Bulk Discounts and Promotions
+- **Description**: Enable the ability to apply bulk discounts and promotions to products.
+- **Tasks**:
+  - Select multiple products and apply discounts.
+  - Support both percentage and fixed-value discounts.
+- **Priority**: Medium
 
-**Media Upload:**
-- Implement functionality for uploading multiple images and one video for each product, linked to the user.
-- Store images and videos locally on the computer, organized by user.
+### 4. Enhance Cost Management Module
+- **Description**: Improve cost management by allowing itemized cost tracking for tax reporting and financial accuracy.
+- **Tasks**:
+  - Add fields for detailed cost descriptions.
+  - Separate fields for different types of costs (fixed, variable, etc.).
+- **Priority**: High
 
-**Media Management:**
-- Develop an interface for managing uploaded images and videos, including the ability to:
-  - Edit metadata
-  - Delete unnecessary files
-  - Add new ones
-  - Manage files specific to each user
+### 5. Add Additional Economic Performance Metrics
+- **Description**: Expand the set of economic metrics available on the platform.
+- **Tasks**:
+  - Add new metrics like Gross Margin, Net Profit, Return on Assets (ROA), and Customer Lifetime Value (CLV).
+  - Display the metrics on analytics pages.
+- **Priority**: Medium
 
-### 4. Product Categorization
+### 6. Add Tax Reporting Module
+- **Description**: Implement a module to generate monthly tax reports.
+- **Tasks**:
+  - Automatically generate reports from expense and revenue data.
+  - Export reports to PDF/Excel for easy submission.
+  - Customize reports based on tax laws in different regions.
+- **Priority**: High
 
-**Product Categories:**
-- Create a categorization system with the ability for each user to create and manage categories.
-- Ensure the ability to filter products by categories.
+---
 
-### 5. Integration with External Services (Export)
+## Installation
 
-**Product Export:**
-- Develop stubs for integrating with APIs of marketplaces like **Etsy**, **Redbubble**, and others.
-- Implement the functionality to export products with images and videos to external platforms, using individual user credentials.
+For the current alpha version, no installation guide is provided. The application is still under active development, and installation instructions will be made available in a later release.
 
-### 6. Media Storage
-
-**Local Storage:**
-- Organize the storage of images and videos locally on the computer, segregating data by user.
-
-**Preparation for Server Migration:**
-- Prepare the infrastructure for potential migration of media storage to a server in the future (e.g., **Amazon S3**).
+Please stay tuned for updates as we move towards a stable version.

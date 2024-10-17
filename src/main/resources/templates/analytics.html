@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head :: head('Business Analytics')}"></head>
+<body id="page-top">
+
+<div id="wrapper">
+    <th:block th:insert="~{fragments/sidebar :: sidebar}"></th:block>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <th:block th:insert="~{fragments/topbar :: topbar}"></th:block>
+
+            <div class="container-fluid">
+                <h1 class="h3 mb-4 text-gray-800">Business Analytics</h1>
+
+                <!-- Tabs for ROI and Profit Margin -->
+                <ul class="nav nav-tabs" id="analyticsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="roi-tab" data-toggle="tab" href="#roi" role="tab" aria-controls="roi" aria-selected="true">ROI</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profit-margin-tab" data-toggle="tab" href="#profit-margin" role="tab" aria-controls="profit-margin" aria-selected="false">Profit Margin</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <!-- ROI Tab Content -->
+                    <div class="tab-pane fade show active" id="roi" role="tabpanel" aria-labelledby="roi-tab">
+                        <!-- Display total ROI -->
+                        <div class="card mb-4">
+                            <div class="card-header">Total ROI</div>
+                            <div class="card-body">
+                                <h5>Total Return on Investment (ROI):</h5>
+                                <p th:text="'Total ROI: ' + ${totalROI} + '%'"></p>
+                            </div>
+                        </div>
+
+                        <!-- Display current month's ROI -->
+                        <div class="card mb-4">
+                            <div class="card-header">Current Month ROI</div>
+                            <div class="card-body">
+                                <h5>Return on Investment for the Current Month:</h5>
+                                <p th:text="'Current Month ROI: ' + ${currentMonthROI} + '%'"></p>
+                            </div>
+                        </div>
+
+                        <!-- ROI Chart -->
+                        <div class="card mb-4">
+                            <div class="card-header">ROI Overview</div>
+                            <div class="card-body">
+                                <h5>Return on Investment Overview:</h5>
+                                <div class="chart-area">
+                                    <canvas id="roiChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Display list of months with ROI -->
+                        <div class="card mb-4">
+                            <div class="card-header">Analysis Period</div>
+                            <div class="card-body">
+                                <h5>Months Included in Analysis:</h5>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>ROI (%)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="entry : ${roiByMonth}">
+                                        <td th:text="${entry.key}"></td>
+                                        <td th:text="${entry.value}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profit Margin Tab Content -->
+                    <div class="tab-pane fade" id="profit-margin" role="tabpanel" aria-labelledby="profit-margin-tab">
+                        <!-- Display total Profit Margin -->
+                        <div class="card mb-4">
+                            <div class="card-header">Total Profit Margin</div>
+                            <div class="card-body">
+                                <h5>Total Profit Margin:</h5>
+                                <p th:text="'Total Profit Margin: ' + ${totalProfitMargin} + '%'"></p>
+                            </div>
+                        </div>
+
+                        <!-- Display current month's Profit Margin -->
+                        <div class="card mb-4">
+                            <div class="card-header">Current Month Profit Margin</div>
+                            <div class="card-body">
+                                <h5>Profit Margin for the Current Month:</h5>
+                                <p th:text="'Current Month Profit Margin: ' + ${currentMonthProfitMargin} + '%'"></p>
+                            </div>
+                        </div>
+
+                        <!-- Profit Margin Chart -->
+                        <div class="card mb-4">
+                            <div class="card-header">Profit Margin Overview</div>
+                            <div class="card-body">
+                                <h5>Profit Margin Overview:</h5>
+                                <div class="chart-area">
+                                    <canvas id="profitMarginChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Display list of months with Profit Margin -->
+                        <div class="card mb-4">
+                            <div class="card-header">Analysis Period</div>
+                            <div class="card-body">
+                                <h5>Months Included in Analysis:</h5>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>Profit Margin (%)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="entry : ${profitMarginByMonth}">
+                                        <td th:text="${entry.key}"></td>
+                                        <td th:text="${entry.value}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+    </div>
+</div>
+
+<th:block th:replace="~{fragments/modal :: modal}"></th:block>
+<th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+
+<!-- Include Chart.js and your custom JS file directly in the template -->
+<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+<script th:src="@{/js/demo/roiChart.js}"></script>
+<!-- Initialize the charts using Thymeleaf -->
+<script th:inline="javascript">
+    var chartLabels = /*[[${chartLabels}]]*/ '';
+
+    // ROI Chart Data
+    var chartDataROI = /*[[${chartData}]]*/ '';
+
+    // Profit Margin Chart Data
+    var chartDataProfitMargin = /*[[${chartDataProfitMargin}]]*/ '';
+
+    // Render ROI chart
+    renderAreaChart('roiChart', chartLabels, chartDataROI, 'ROI (%)');
+
+    // Render Profit Margin chart
+    renderAreaChart('profitMarginChart', chartLabels, chartDataProfitMargin, 'Profit Margin (%)');
+</script>
+</body>
+</html>

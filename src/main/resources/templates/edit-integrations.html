@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments/head :: head('Edit Integration')}"></head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <th:block th:insert="~{fragments/sidebar :: sidebar}"></th:block>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <th:block th:insert="~{fragments/topbar :: topbar}"></th:block>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">Edit Integration</h1>
+                <div class="container-xl px-4 mt-4">
+                    <div class="container-xl px-4 mt-4">
+                        <!-- Account page navigation-->
+                        <nav class="nav nav-borders">
+                            <a class="nav-link active ms-0" th:href="@{/profile}">Profile</a>
+                            <a class="nav-link active ms-0" th:href="@{/profile/integration/edit}">Add\edit Integration</a>
+                        </nav>
+                        <hr class="mt-0 mb-4">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card card-header-actions mb-4">
+                                    <div class="card-header">
+                                        Itegrations
+                                        <a th:if="${integrations.size() < 2}" class="btn btn-sm btn-primary" th:href="@{/profile/integration/add}" type="button">Add Integration</a>
+                                    </div>
+                                    <div class="card-body px-0">
+                                        <!-- Loop through the integrations -->
+                                        <th:block th:each="integration : ${integrations}">
+                                            <div class="d-flex align-items-center justify-content-between px-4">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="ms-4">
+                                                        <!-- Display the type of integration -->
+                                                        <div class="small" th:text="${integration.type}">Integration Type</div>
+                                                    </div>
+                                                </div>
+                                                <div class="ms-4 small">
+                                                    <!-- Link to edit the integration -->
+                                                    <a th:href="@{/profile/integration/edit/{id}(id=${integration.id})}">Edit</a>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </th:block>
+
+                                        <!-- If there are no integrations, show a message -->
+                                        <th:block th:if="${integrations.size() == 0}">
+                                            <div class="px-4">
+                                                <div class="small">No integrations available.</div>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <th:block th:replace="~{fragments/modal :: modal}"></th:block>
+    <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+</body>
+
+</html>
