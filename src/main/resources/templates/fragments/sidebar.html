@@ -1,0 +1,85 @@
+<!-- sidebar.html -->
+<th:block th:fragment="sidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center"  th:href="@{/index}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">TradeAnalytics <sup>alpha</sup></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" th:href="@{/index}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>User settings</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Profile and Integrations:</h6>
+                <a class="collapse-item" th:href="@{/profile}">Profile</a>
+                <a class="collapse-item" th:href="@{/profile/integration/edit}">Add\edit Integration</a>
+
+            </div>
+        </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Nav Item - Business Management Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBusinessManagement"
+           aria-expanded="true" aria-controls="collapseBusinessManagement">
+            <i class="fas fa-fw fa-business-time"></i>
+            <span>Business Management</span>
+        </a>
+        <div id="collapseBusinessManagement" class="collapse" aria-labelledby="headingBusinessManagement" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" th:href="@{/listings}">Product Management</a>
+                <a class="collapse-item" th:href="@{/orders}">Order Management</a>
+                <a class="collapse-item" th:href="@{/buyers}">Customer Management</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCostsManagement"
+           aria-expanded="true" aria-controls="collapseCostsManagement">
+            <i class="fas fa-calculator"></i>
+            <span>Costs  Management</span>
+        </a>
+        <div id="collapseCostsManagement" class="collapse" aria-labelledby="collapseCostsManagement" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" th:href="@{/costs}">Cost Management</a>
+                <a class="collapse-item" th:href="@{/costs/create}">Add costs</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAnalytics"
+           aria-expanded="true" aria-controls="collapseAnalytics">
+            <i class="fas fa-chart-line"></i>
+            <span>Business Analytics</span>
+        </a>
+        <div id="collapseAnalytics" class="collapse" aria-labelledby="collapseAnalytics" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" th:href="@{/analytics}">Analytics</a>
+            </div>
+        </div>
+    </li>
+    <!-- More Nav Items -->
+    <!-- Rest of the content -->
+</ul>
+</th:block>

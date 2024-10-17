@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments/head :: head('Add Integration')}"></head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <th:block th:insert="~{fragments/sidebar :: sidebar}"></th:block>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <th:block th:insert="~{fragments/topbar :: topbar}"></th:block>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">Add Integration</h1>
+                <div class="container-xl px-4 mt-4">
+                    <div class="container-xl px-4 mt-4">
+                        <!-- Account page navigation-->
+                        <nav class="nav nav-borders">
+                            <a class="nav-link active ms-0" th:href="@{/profile}">Profile</a>
+                            <a class="nav-link active ms-0" th:href="@{/profile/integration/edit}">Add\edit Integration</a>
+                        </nav>
+                        <hr class="mt-0 mb-4">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Account details card-->
+                                <div class="card mb-4">
+                                    <div class="card-header">Add Integration</div>
+                                    <div class="card-body">
+                                        <form th:action="@{/profile/integration/add}" th:object="${integration}" method="post">
+                                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                                            <div class="mb-3">
+                                                <label for="inputType">Integration Type</label>
+                                                <select class="form-control" th:field="*{type}" id="inputType">
+                                                    <option th:value="ETSY">Etsy</option>
+                                                    <option th:value="PRINTIFY">Printify</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="inputApiKey">API Key</label>
+                                                <input class="form-control" id="inputApiKey" th:field="*{apiKey}" placeholder="Enter your API Key" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="inputAccessToken">Access Token</label>
+                                                <input class="form-control" id="inputAccessToken" th:field="*{accessToken}" placeholder="Enter your Access Token" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="inputBaseUrl">Base URL</label>
+                                                <input class="form-control" id="inputBaseUrl" th:field="*{baseUrl}" placeholder="Enter the Base URL" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="inputClientId">Client ID</label>
+                                                <input class="form-control" id="inputClientId" th:field="*{clientId}" placeholder="Enter your Client ID" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="inputClientSecret">Client Secret</label>
+                                                <input class="form-control" id="inputClientSecret" th:field="*{clientSecret}" placeholder="Enter your Client Secret" />
+                                            </div>
+
+                                            <button class="btn btn-primary" type="submit">Add Integration</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <th:block th:replace="~{fragments/modal :: modal}"></th:block>
+    <th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+</body>
+
+</html>

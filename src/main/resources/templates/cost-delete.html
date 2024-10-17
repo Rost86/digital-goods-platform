@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head :: head('Delete Cost')}"></head>
+
+<body id="page-top">
+
+<div id="wrapper">
+    <th:block th:insert="~{fragments/sidebar :: sidebar}"></th:block>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <th:block th:insert="~{fragments/topbar :: topbar}"></th:block>
+
+            <div class="container-fluid">
+                <h1 class="h3 mb-4 text-gray-800">Delete Cost</h1>
+
+                <!-- Confirmation message -->
+                <div class="alert alert-warning" role="alert">
+                    Are you sure you want to delete this cost entry?
+                </div>
+
+                <!-- Form for confirming deletion -->
+                <form th:action="@{|/costs/delete/${costTracking.id}|}" method="post">
+                    <!-- Hidden field with cost ID -->
+                    <input type="hidden" th:value="${costTracking.id}" name="id"/>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a class="btn btn-secondary" th:href="@{/costs}">Cancel</a>
+                </form>
+            </div>
+        </div>
+        <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+    </div>
+</div>
+
+<th:block th:replace="~{fragments/modal :: modal}"></th:block>
+<th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+
+</body>
+</html>

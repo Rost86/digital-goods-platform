@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head :: head('Cost Management')}"></head>
+
+<body id="page-top">
+
+<div id="wrapper">
+    <th:block th:insert="~{fragments/sidebar :: sidebar}"></th:block>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <th:block th:insert="~{fragments/topbar :: topbar}"></th:block>
+
+            <div class="container-fluid">
+                <h1 class="h3 mb-4 text-gray-800">Cost Management</h1>
+
+                <!-- Button to add new cost -->
+                <a class="btn btn-primary mb-4" th:href="@{/costs/create}">Add New Cost</a>
+
+                <!-- Cost table -->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Month</th>
+                        <th>Fixed Cost</th>
+                        <th>Variable Cost</th>
+                        <th>Cost Per Unit</th>
+                        <th>Advertising cost</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cost : ${costs}">
+                        <td th:text="${cost.year}"></td>
+                        <td th:text="${cost.month}"></td>
+                        <td th:text="${cost.fixedCost}"></td>
+                        <td th:text="${cost.variableCost}"></td>
+                        <td th:text="${cost.costPerUnit}"></td>
+                        <td th:text="${cost.advertisingCost}"></td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" th:href="@{'/costs/edit/' + ${cost.id}}">Edit</a>
+                            <a class="btn btn-danger btn-sm" th:href="@{'/costs/delete/' + ${cost.id}}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+    </div>
+</div>
+
+<th:block th:replace="~{fragments/modal :: modal}"></th:block>
+<th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+
+</body>
+</html>

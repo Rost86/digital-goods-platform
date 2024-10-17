@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head :: head('Create Cost')}"></head>
+
+<body id="page-top">
+
+<div id="wrapper">
+    <th:block th:insert="~{fragments/sidebar :: sidebar}"></th:block>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <th:block th:insert="~{fragments/topbar :: topbar}"></th:block>
+
+            <div class="container-fluid">
+                <h1 class="h3 mb-4 text-gray-800">Create New Cost</h1>
+
+                <!-- Form for creating cost -->
+                <form th:action="@{/costs/create}" th:object="${cost}" method="post">
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <input type="number" class="form-control" id="year" th:field="*{year}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="month">Month</label>
+                        <input type="number" class="form-control" id="month" th:field="*{month}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fixedCost">Fixed Cost</label>
+                        <input type="number" class="form-control" id="fixedCost" th:field="*{fixedCost}" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="variableCost">Variable Cost</label>
+                        <input type="number" class="form-control" id="variableCost" th:field="*{variableCost}" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="costPerUnit">Cost Per Unit</label>
+                        <input type="number" class="form-control" id="costPerUnit" th:field="*{costPerUnit}" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="averageTimePerUnit">Advertising cost</label>
+                        <input type="number" class="form-control" id="averageTimePerUnit" th:field="*{advertisingCost}" step="0.01" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
+        <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+    </div>
+</div>
+
+<th:block th:replace="~{fragments/modal :: modal}"></th:block>
+<th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+
+</body>
+</html>

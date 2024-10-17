@@ -1,2 +1,6 @@
-package com.example.productUploader.model;public class IntegrationType {
+package com.example.productUploader.model;
+
+public enum IntegrationType {
+    ETSY,
+    PRINTIFY
 }

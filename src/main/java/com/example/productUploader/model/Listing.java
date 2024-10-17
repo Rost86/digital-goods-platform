@@ -19,6 +19,7 @@ import java.util.Map;
 public class Listing {
 
     @Id
+    @Column(name = "listing_id", nullable = false)
     @JsonProperty("listing_id")
     private Long listingId;  // ID of the listing from JSON
 
@@ -45,24 +46,6 @@ public class Listing {
     @Column(nullable = false)
     @JsonProperty("state")
     private String state;  // State of the listing (e.g., "active")
-
-    @Column(nullable = false)
-    private Timestamp creationTimestamp;  // Creation time
-
-    @Column(nullable = false)
-    private Timestamp lastModifiedTimestamp;  // Last modification time
-
-    // Method to convert Unix Timestamp to Timestamp object for creationTimestamp field
-    @JsonProperty("creation_timestamp")
-    public void setCreationTimestamp(long creationTimestamp) {
-        this.creationTimestamp = Timestamp.from(java.time.Instant.ofEpochSecond(creationTimestamp));
-    }
-
-    // Method to convert Unix Timestamp to Timestamp object for lastModifiedTimestamp field
-    @JsonProperty("last_modified_timestamp")
-    public void setLastModifiedTimestamp(long lastModifiedTimestamp) {
-        this.lastModifiedTimestamp = Timestamp.from(java.time.Instant.ofEpochSecond(lastModifiedTimestamp));
-    }
 
     @Column(nullable = false)
     @JsonProperty("quantity")
@@ -229,6 +212,10 @@ public class Listing {
         this.priceCurrency = (String) price.get("currency_code");  // Extract currency code
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "receipt_id")  // Foreign key to CustomerOrder
+    private CustomerOrder customerOrder;
+
     // Unpack the skus array and store the first element as a string
     @JsonProperty("skus")
     private void unpackSkus(List<String> skus) {
@@ -236,4 +223,8 @@ public class Listing {
             this.skus = skus.get(0);  // Store the first SKU
         }
     }
+
+    @Column(nullable = false)
+    @JsonProperty("updated_timestamp")
+    private Long updatedTimestamp;  // Timestamp of the last update
 }
